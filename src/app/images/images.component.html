@@ -1,0 +1,13 @@
+<ul *ngIf="images" class="flex-grid image-list">
+  <li (click)="openImage(image)" class="flex-width-1-9@s flex-center" *ngFor="let image of images"><img
+          [src]="image.thumbnailUrl" [alt]="image.title"></li>
+</ul>
+<div (click)="closeImage()" *ngIf="selectedImage" class="popup visible">
+  <div class="absolute" *ngIf="modalPreloader">
+    <div class="spinner"></div>
+  </div>
+  <img [src]="selectedImage.url" [alt]="selectedImage.title" (load)="hidePreloader()">
+</div>
+<div class="flex-center">
+  <button class="more-button" *ngIf="hasMore" (click)="getImages()">Загрузить ещё</button>
+</div>
